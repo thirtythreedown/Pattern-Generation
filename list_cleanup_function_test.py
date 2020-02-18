@@ -2,10 +2,8 @@ def name_checker(input_list, comparator_list):
     """Module compares list of generated_names with data in saved_projects and removes redundancies"""  
     for item in input_list:
         print("Processing item " + item + " from list1")
-        if item not in comparator_list:
+        if item in comparator_list:
             print("That's the stuff!")
-        else:
-            print("That's a duplicate!")
             input_list.remove(item)
     return input_list
 

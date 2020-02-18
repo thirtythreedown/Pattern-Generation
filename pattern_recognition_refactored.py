@@ -23,12 +23,6 @@ workbook = openpyxl.load_workbook('pattern_recognition.xlsx')
 sheet = workbook['Sheet1']
 writingsheet = workbook['Sheet2']
 ##Loading specific spreadsheet from workbook by name using ['sheetname'] method, storing it into sheet variable
-##print(sheet)
-##Printing content of worksheet object stored in sheet variable
-
-##print("Printing the value of A1 cell")
-##print(sheet['A1'].value)
-##Printing the value of cell A1 in Sheet1. Yes, it's a list kinda thing.    
 
 ##---PROBING SHEET SIZE STARTS HERE---
 ##print("How big is the sheet?")
@@ -79,11 +73,17 @@ def randomizer(sheet, column):
     ##print(randomized)
     return randomized
 
-def name_checker(writing_sheet, saved_projects, generated_names):
-    """Module compares list of generated_names with data in saved_projects and removes redundancies"""
-    for name in generated_names:
-        if name not in saved_projects:
-            print("Project name " + name + " is brand new! Saving.")
+def list_cleaner(input_list, comparator_list):
+    """Compares generated_names with saved_projects and removes duplicates"""  
+    for item in input_list:
+        print("Processing item " + item + " from list1")
+        if item not in comparator_list:
+            print("That's the stuff!")
+        else:
+            print("That's a duplicate!")
+            input_list.remove(item)
+    return input_list
+   
 
 print(saved_projects)
 
@@ -97,7 +97,12 @@ while counter < 5:
     generated_names.append(project_name)
     counter += 1
 print(generated_names)
-name_checker(writingsheet, saved_projects, generated_names)
+cleaned_list = list_cleaner(generated_names, saved_projects)
+
+for value in cleaned_list:
+    print(value)
+
+
 
 ##workbook.save('pattern_recognition.xlsx')
 ##    random_1 = sheet['A'+str(random.randint(1, lastRow))].value
